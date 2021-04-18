@@ -31,4 +31,8 @@ export class CartComponent implements OnInit {
     this.buttonClicked.emit(true);
   }
 
+showAlert() {
+  alert("Checkout functionality is not implemented !")
+}
+
 }
