@@ -72,6 +72,10 @@ export class ProductCardComponent implements OnInit {
   showDetails(artPiece) {
     const modalRef = this.modalService.open(DetailsModalComponent, this.modalOptions)
     modalRef.componentInstance.artPiece = artPiece
+    modalRef.componentInstance.cartCount.subscribe((cartCountFromDetailsModal) => {
+      this.itemCount = cartCountFromDetailsModal;
+      this.cartCount.emit(this.itemCount);
+      })
   }
 
 }

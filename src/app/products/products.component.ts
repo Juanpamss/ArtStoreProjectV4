@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from './../models/product.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FilterModel} from "../models/filter.model";
 import {ProductsService} from './../products.service';
 import {CategoryService} from 'src/app/category.service';
@@ -42,7 +42,9 @@ export class ProductsComponent implements OnInit {
     private route: ActivatedRoute,
     private productsService: ProductsService,
     private _artapiService: artapiService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private router: Router,
+
   ) {}
 
   ngOnInit(): void {
@@ -77,5 +79,12 @@ export class ProductsComponent implements OnInit {
 
  reloadItemCount(cartCount) {
    this.cartCount = cartCount
+ }
+
+ clearFilter() {
+  this.router.navigateByUrl('/', {skipLocationChange: true}).then(() =>
+  this.router.navigate(['/products'], {
+  })
+)
  }
 }
