@@ -1,0 +1,47 @@
+<div class="container h-100" style="margin: 10px">
+  <div class="card mb-6" style="width: 100%">
+    <div class="row">
+      <div class="col-md-6" style="margin-bottom: auto; margin-top: auto">
+
+        <div *ngIf="artPiece.imgURL !== undefined; else elseBlockResults">
+          <h6 style="font-weight: lighter; text-align: center">Click on the image to zoom in</h6>
+          <lib-ngx-image-zoom
+            [thumbImage]="thumbImage === undefined ? 'assets/branding/default-img.png' : thumbImage"
+            [fullImage]="artPiece.imgURL !== undefined ? artPiece.imgURL : 'assets/branding/default-img.png'"
+            zoomMode="click"
+            enableLens="true"
+            enableScrollZoom=disabled
+            magnification=2
+            lensWidth=150
+            lensHeight=150
+          ></lib-ngx-image-zoom>
+        </div>
+        <ng-template #elseBlockResults>
+          <img class="card-img-top" src="assets/branding/default-img.png"/>
+        </ng-template>
+
+
+
+      </div>
+      <div class="col-md-6" style="margin-bottom: auto; margin-top: auto">
+        <div class="card-body">
+          <h4 class="card-title" style="text-align: center; font-weight: bold">{{ artPiece.title}}</h4>
+          <label style="font-weight: bold">Artist: &nbsp;</label>
+          <label>{{artPiece.artist_title}}</label><br>
+          <label style="font-weight: bold">Origin: &nbsp;</label>
+          <label>{{artPiece.place_of_origin}}</label><br>
+          <label style="font-weight: bold">Medium: &nbsp;</label>
+          <label>{{artPiece.medium}}</label><br>
+          <label style="font-weight: bold">Dimensions: &nbsp;</label>
+          <label>{{artPiece.dimensions}}</label><br>
+          <label style="font-weight: bold">Credit Line: &nbsp;</label>
+          <label>{{artPiece.credit_line}}</label><br>
+          <label style="font-weight: bold">Date: &nbsp;</label>
+          <label>{{artPiece.date_display}}</label><br>
+          <label style="font-weight: bold">Price: &nbsp;</label>
+          <label>{{ artPiece.price | currency: "USD":"symbol" }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

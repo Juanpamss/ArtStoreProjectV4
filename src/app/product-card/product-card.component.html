@@ -1,0 +1,39 @@
+<div *ngIf="artPiece.title" class="card" style="margin: 10px">
+  <div>
+    <div class="container" (click)="showDetails(artPiece)">
+      <div class="bottom-right" style="background-color: #28424f; color: white; border-radius: 5px;">&nbsp;{{artPiece.classification_title}}&nbsp;</div>
+      <img class="card-img-top" [src]="artPiece.imgURL !== undefined ? artPiece.imgURL : 'assets/branding/default-img.png'"/>
+      <div class="middle">
+        <div class="text">Click for more details</div>
+      </div>
+    </div>
+  </div>
+  <ng-template #addedToCartModal let-modal class="added-to-cart">
+    <app-added-to-cart-modal (buttonClicked)="closeAddedToCartModal($event)"></app-added-to-cart-modal>
+  </ng-template>
+  <div class="card-body">
+    <h4 class="card-title">{{ artPiece.title }}</h4>
+    <h6 class="card-title">{{ artPiece.artist_title }}</h6>
+    <p class="card-text">{{ artPiece.price | currency: "USD":"symbol" }}</p>
+  </div>
+  <div class="card-footer" style="text-align: center">
+    <a
+      (click)="addToFavorites()"
+      class="fas fa-heart fa-lg"
+      style="text-decoration: none; margin-right: 10px; margin-left: 10px"
+      [style.color]="artPiece.toggle ? 'red' : 'grey'"
+    ></a>
+    <a *ngIf="!inCart && showActions"
+      (click)="addToCart(addedToCartModal)"
+      class="btn btn-secondary"
+      style="color: white; margin-right: 10px; margin-left: 10px"
+      >{{addOrRemove? 'Remove From' : 'Add To'}} Cart</a
+    >
+    <a *ngIf="inCart && showActions"
+    (click)="removeFromCart(addedToCartModal)"
+    class="btn btn-secondary"
+    style="color: black; margin-right: 10px; margin-left: 10px; background: lightgray; border-color: lightgray;"
+    >Remove from Cart</a
+  >
+  </div>
+</div>

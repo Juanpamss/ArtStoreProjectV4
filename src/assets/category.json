@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Classification",
+    "options": ["Oil on canvas", "Oil on board", "Oil on panel", "Sculpture", "Painting", "Pen and ink drawings" ,"Engraving", "Watercolor"]
+  },
+  {
+    "name": "Price",
+    "options": ["4000","3000","2000","1500","1000","500","0"]
+  }
+]

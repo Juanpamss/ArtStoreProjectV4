@@ -1,0 +1,57 @@
+/* icon */ .custom-navbar .fa {font-size:25px}
+
+@media (max-width:767px) {
+  .custom-navbar .navbar-right {
+    float: right;
+    padding-right: 15px;
+  }
+  .custom-navbar .nav.navbar-nav.navbar-right li {
+    float: right;
+  }
+  .custom-navbar .nav.navbar-nav.navbar-right li > a {
+    padding:8px 5px;
+  }
+  .custom-navbar .navbar-toggle {
+    float: left
+  }
+  .custom-navbar .navbar-header {
+    float: left;
+    width: auto!important;
+  }
+  .custom-navbar .navbar-collapse {
+    clear: both;
+    float: none;
+  }
+
+}
+#cart-count {
+  position: absolute;
+  color: blue;
+  left: 8px;
+  top: -15px;
+}
+
+
+.header{background:rgb(0, 178, 255);color:#fff;}
+#lblCartCount {
+  font-size: 15px;
+  font-family: sans-serif;
+  background: #0979b5;
+  color: #fff;
+  padding: 0 8px;
+  vertical-align: top;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
