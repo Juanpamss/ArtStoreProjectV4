@@ -19,9 +19,8 @@
         <ng-template #elseBlockResults>
           <div style="display: flex; flex-direction: row;">
             <h4 style="margin-left: 10px; font-weight: bold">{{totalCount}} results for: {{param1}}</h4>
-            <button (click)="clearFilter()" class="btn btn-outline-secondary my-2 my-sm-0" style="width: fit-content; height: fit-content; margin-left: 20px;">
-              Clear Filter
-            </button>
+            <button (click)="clearFilter()" class="btn btn-outline-secondary" style="width: fit-content; height: fit-content; margin-left: 20px;">
+              <span class="btn-label"><i class="fas fa-filter fa-sm"></i></span> Clear Filters</button>
           </div>
         </ng-template>
         <div *ngIf="artPiecesToDisplay.length === 0; else elseBlock">

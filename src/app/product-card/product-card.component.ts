@@ -17,8 +17,8 @@ export class ProductCardComponent implements OnInit {
   @Input('show-actions') showActions = true;
 
   inCart: boolean;
-
   itemCount: Number;
+
   constructor(
     private cartService: CartService,
     private favouriteService: FavouriteService,
@@ -28,6 +28,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
     this.isArtInCart()
   }
+
   isArtInCart() {
     this.inCart = false;
   }
@@ -46,10 +47,7 @@ export class ProductCardComponent implements OnInit {
     this.cartService.addToCart(this.artPiece);
     this.itemCount= this.cartService.getCount();
     this.cartCount.emit(this.itemCount);
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
-      .result//.then((result) => {
-
-      //})
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
   }
 
   removeFromCart() {
@@ -77,6 +75,5 @@ export class ProductCardComponent implements OnInit {
       this.cartCount.emit(this.itemCount);
       })
   }
-
 }
 

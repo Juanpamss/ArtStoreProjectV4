@@ -1,7 +1,6 @@
 <div>
     <button style="margin: 10px;" type="button" class="close" aria-label="Close" (click)="closeCart()">
-        <span aria-hidden="true">×</span>
-    </button>
+        <span aria-hidden="true">×</span></button>
     <div class="cart_section">
         <div class="container-fluid">
             <div class="row">
@@ -10,7 +9,6 @@
                         <div class="cart_title">Shopping Cart</div>
                         <div class="cart_items">
                             <ul class="cart_list" *ngFor="let item of items">
-
                                 <li class="cart_item clearfix" style="overflow: hidden;">
                                     <div class="cart_item_image">
                                       <div *ngIf="item.imgURL === undefined; else elseBlock">
@@ -22,12 +20,13 @@
                                     </div>
                                     <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                         <div class="cart_item_name cart_info_col">
-                                            <div class="cart_item_title">Name</div>
-                                            <div class="cart_item_text">{{item.title}}</div>
-                                        </div>
-                                        <div class="cart_item_price cart_info_col">
-                                            <div class="cart_item_title">Price</div>
-                                            <div class="cart_item_text">{{item.price | currency: "USD":"symbol" }}</div>
+                                          <label class="cart_item_title">Name</label><br>
+                                          <label class="cart_item_text">{{item.title}}</label><br>
+                                          <label class="cart_item_title">Price</label><br>
+                                          <label class="cart_item_text">{{item.price | currency: "USD":"symbol" }}</label>
+                                          <br>
+                                          <button (click)="removeItem(item)" class="btn btn-outline-secondary" style="margin-top: 10px; margin-left: 40px">
+                                            <span class="btn-label"><i class="fas fa-trash-alt fa-sm"></i></span> Remove</button>
                                         </div>
                                     </div>
                                 </li>
@@ -39,7 +38,7 @@
                                 <div class="order_total_amount">{{totalPrice | currency: "USD":"symbol" }}</div>
                             </div>
                         </div>
-                        <div class="cart_buttons"> 
+                        <div class="cart_buttons">
                             <button type="button" class="button cart_button_clear" (click)="showAlert()">Checkout</button>
                         </div>
                     </div>

@@ -1,11 +1,5 @@
 <div>
-  <button
-    style="margin: 10px"
-    type="button"
-    class="close"
-    aria-label="Close"
-    (click)="closeFavourite()"
-  >
+  <button style="margin: 10px" type="button" class="close" aria-label="Close" (click)="closeFavourite()">
     <span aria-hidden="true">×</span>
   </button>
   <div class="cart_section">
@@ -25,35 +19,17 @@
                       <img [src]="item.imgURL" alt="">
                     </ng-template>
                   </div>
-                  <div
-                    class="cart_item_info d-flex flex-md-row flex-column justify-content-between"
-                  >
+                  <div class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                     <div class="cart_item_name cart_info_col">
-                      <div class="cart_item_title">Name</div>
-                      <div class="cart_item_text">{{ item.title }}</div>
+                      <label class="cart_item_title">Name</label><br>
+                      <label class="cart_item_text">{{item.title}}</label><br>
+                      <label class="cart_item_title">Price</label><br>
+                      <label class="cart_item_text">{{item.price | currency: "USD":"symbol" }}</label>
+                      <br>
+                      <button (click)="removeFavourite(item)" class="btn btn-outline-secondary" style="margin-top: 10px; margin-left: 50px">
+                        <span class="btn-label"><i class="fas fa-trash-alt fa-sm"></i></span> Remove</button>
                     </div>
-
-                    <div class="cart_item_price cart_info_col">
-                      <div class="cart_item_title">Price</div>
-                      <div class="cart_item_text">
-                        {{ item.price | currency: "USD":"symbol" }}
-                      </div>
-
-
-                      <div class="cart_item_name cart_info_col">
-                        <div class="cart_item_title">
-                      <span class ="Right" style = "float:right">
-                        <a placement="top" container="body" mdbTooltip="Remove Product" (click)="removeFavourite(item)">
-                          <i class="fa fa-trash"> Remove item </i>
-                        </a>
-                        </span>
-                      </div>
-      
                   </div>
-                    </div>
-                    
-                  </div>
-
                 </li>
               </ul>
             </div>

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import {ArtPiece} from "../models/artPiece.model";
 
 @Component({
   selector: 'app-cart',
@@ -7,15 +8,18 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  items = this.cartService.getItems();
+  items = this._cartService.getItems();
   totalPrice: number = 0;
-
-  PriceReducer = (accumulator, currentValue) => accumulator.price + currentValue.price;
 
   @Output()
   buttonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output()
+  cartCount: EventEmitter<any> = new EventEmitter();
 
-  constructor(  private cartService: CartService) { }
+  itemCount: Number;
+  inCart: boolean;
+
+  constructor(  private _cartService: CartService) { }
 
   ngOnInit(): void {
     this.calculateTotal()
@@ -27,12 +31,34 @@ export class CartComponent implements OnInit {
     });
   }
 
+  reCalculateTotal() {
+
+    let total = 0
+
+    this.items.forEach(item => {
+      total +=item.price
+    });
+
+    return total
+  }
+
   closeCart() {
     this.buttonClicked.emit(true);
   }
 
-showAlert() {
-  alert("Checkout functionality is not implemented !")
-}
+  showAlert() {
+    alert("Checkout functionality is not implemented !")
+  }
 
+  removeItem(item){
+    this._cartService.removeFromCart(item);
+    this.itemCount= this._cartService.getCount();
+    this.cartCount.emit(this.itemCount);
+    this.inCart = false;
+    const index = this.items.indexOf(item);
+    if (index > -1) {
+      this.items.splice(index, 1);
+    }
+    this.totalPrice = this.reCalculateTotal()
+  }
 }

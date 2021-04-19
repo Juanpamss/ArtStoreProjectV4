@@ -13,9 +13,9 @@ export class CartService {
   }
 
   removeFromCart(artPiece: ArtPiece) {
-    for( var i = 0; i < this.items.length; i++){ 
-      if ( this.items[i].title === artPiece.title) { 
-        this.items.splice(i, 1); 
+    for( var i = 0; i < this.items.length; i++){
+      if ( this.items[i].title === artPiece.title) {
+        this.items.splice(i, 1);
       }
     }
   }
