@@ -17,20 +17,13 @@
     <p class="card-text">{{ artPiece.price | currency: "USD":"symbol" }}</p>
   </div>
   <div class="card-footer" style="text-align: center">
-    <a
-      (click)="addToFavorites()"
-      class="fas fa-heart fa-lg"
-      style="text-decoration: none; margin-right: 10px; margin-left: 10px"
-      [style.color]="artPiece.toggle ? 'red' : 'grey'"
-    ></a>
-    <a *ngIf="!inCart && showActions"
-      (click)="addToCart(addedToCartModal)"
-      class="btn btn-secondary"
-      style="color: white; margin-right: 10px; margin-left: 10px"
+    <a (click)="addToFavorites()" class="fas fa-heart fa-lg"style="text-decoration: none; margin-right: 10px; margin-left: 10px"
+      [style.color]="artPiece.toggle ? 'red' : 'grey'"></a>
+    <a *ngIf="!artPiece.inCart && showActions" (click)="addToCart(addedToCartModal)" class="btn btn-secondary" style="color: white; margin-right: 10px; margin-left: 10px"
       >{{addOrRemove? 'Remove From' : 'Add To'}} Cart</a
     >
-    <a *ngIf="inCart && showActions"
-    (click)="removeFromCart(addedToCartModal)"
+    <a *ngIf="artPiece.inCart && showActions"
+    (click)="removeFromCart()"
     class="btn btn-secondary"
     style="color: black; margin-right: 10px; margin-left: 10px; background: lightgray; border-color: lightgray;"
     >Remove from Cart</a

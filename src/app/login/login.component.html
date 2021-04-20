@@ -1,14 +1,26 @@
-<div class="card mt-5" style="margin:auto;width: 600px;">
-    <div class="card-body">
-      <h5 class="card-title">Login</h5>
-      <div class="form-group">
-        <label for="email">User Name</label>
-        <input type="text" class="form-control" id="userName" placeholder="User Name" [(ngModel)]="userName">
+<div class="container" style="margin-top: 127px; margin-bottom: 120px">
+  <div class="row">
+    <span class="img-container"> <!-- Inline parent element -->
+      <a href="#"><img src="assets/branding/logo_big.png" style="height: 60%" alt="The Art Store"/></a>
+    </span>
+  </div>
+  <div class="row" style="margin-top: -150px">
+    <div class="card mt-5" style="margin:auto;width: 600px; height: 350px">
+      <div class="card-body" style="margin: 30px">
+        <h2 class="card-title" style="text-align: center">Login</h2>
+        <div class="form-group">
+          <label for="username" style="font-weight:  bold">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="username">
+        </div>
+        <div class="form-group">
+          <label for="password" style="font-weight:  bold">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <br>
+        <div class="row" style="margin: 1px">
+          <button type="submit" class="btn btn-outline-secondary" style="background-color: #28424f; color: white" (click)="login()">Sign In</button>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="email">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password">
-      </div>
-      <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
     </div>
   </div>
+</div>

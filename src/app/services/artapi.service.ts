@@ -73,7 +73,8 @@ export class artapiService {
                 credit_line: data['data'].credit_line,
                 place_of_origin: data['data'].place_of_origin,
                 medium: data['data'].medium_display,
-                toggle : false
+                toggle : false,
+                inCart : false
               }
             )
           } else {
@@ -91,8 +92,8 @@ export class artapiService {
                 credit_line: data['data'].credit_line,
                 place_of_origin: data['data'].place_of_origin,
                 medium: data['data'].medium_display,
-                toggle : false
-
+                toggle : false,
+                inCart : false
               }
             )
             this.categoryListAvailable.push(data['data'].classification_title)

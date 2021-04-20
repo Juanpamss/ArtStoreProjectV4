@@ -12,5 +12,5 @@ export class ArtPiece {
   place_of_origin: string;
   medium: string;
   toggle: boolean;
-
+  inCart: boolean;
 }

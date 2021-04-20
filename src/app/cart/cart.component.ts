@@ -50,15 +50,21 @@ export class CartComponent implements OnInit {
     alert("Checkout functionality is not implemented !")
   }
 
-  removeItem(item){
-    this._cartService.removeFromCart(item);
-    this.itemCount= this._cartService.getCount();
-    this.cartCount.emit(this.itemCount);
-    this.inCart = false;
+  removeLocally(item){
     const index = this.items.indexOf(item);
     if (index > -1) {
       this.items.splice(index, 1);
     }
-    this.totalPrice = this.reCalculateTotal()
+  }
+
+  removeItem(item){
+    this._cartService.removeFromCart(item);
+    this.itemCount= this._cartService.getCount();
+    console.log("count: ", this.itemCount)
+    this.cartCount.emit(this.itemCount);
+    this.inCart = false;
+    this.removeLocally(item);
+    this.totalPrice = this.reCalculateTotal();
+    (<ArtPiece>item).inCart = false;
   }
 }
