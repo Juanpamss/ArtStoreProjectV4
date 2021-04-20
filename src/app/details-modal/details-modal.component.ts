@@ -28,8 +28,6 @@ export class DetailsModalComponent implements OnInit {
 
     this.thumbImage = this.artPiece.imgURL !== undefined ? this.artPiece.imgURL.replace("/843,","/400,") : undefined
 
-    console.log(this.thumbImage)
-
   }
 
   addToCart(content) {
@@ -42,10 +40,7 @@ export class DetailsModalComponent implements OnInit {
       })
   }
 
-  closeCart() {
-    this.modalService.dismissAll();
-  }
-  closeAddedToCartModal() {
+  dismissAllModals() {
     this.modalService.dismissAll();
   }
 

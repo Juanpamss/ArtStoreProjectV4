@@ -1,0 +1,8 @@
+<h1 mat-dialog-title style="text-align: center; font-weight: bold">{{title}}</h1>
+<div mat-dialog-content style="text-align: center">
+  {{message}}
+</div>
+<div style="margin:20px;text-align: center">
+  <input style="margin:0px 10px;" type="button" class="btn btn-danger" value="Confirm" (click)="passBack(true)">
+  <input type="button" class="btn btn-secondary" value="Cancel" (click)="passBack(false)">
+</div>

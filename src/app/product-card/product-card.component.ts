@@ -4,6 +4,8 @@ import { CartService } from '../services/cart.service';
 import { FavouriteService } from '../favourite.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DetailsModalComponent} from "../details-modal/details-modal.component";
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'product-card',
@@ -17,10 +19,17 @@ export class ProductCardComponent implements OnInit {
   @Input('show-actions') showActions = true;
   itemCount: Number;
 
+  modalOptions = {
+    size: 'lg',
+    centered: true,
+    scrollable: true
+  };
+
   constructor(
     private cartService: CartService,
     private favouriteService: FavouriteService,
     private modalService: NgbModal,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -48,22 +57,51 @@ export class ProductCardComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
   }
 
-  removeFromCart() {
-    this.cartService.removeFromCart(this.artPiece);
-    this.itemCount= this.cartService.getCount();
-    this.cartCount.emit(this.itemCount);
-    this.artPiece.inCart = false;
+  removeFromCart(artPiece) {
+
+    //
+
+    const modalRef = this.modalService.open(ConfirmDialogComponent)
+    modalRef.componentInstance.title = 'Remove Item'
+    modalRef.componentInstance.message = 'Are you sure you want to remove this item from your cart?'
+    modalRef.result.then((result) => {
+      if (result) {
+        this.cartService.removeFromCart(this.artPiece);
+        this.itemCount= this.cartService.getCount();
+        this.cartCount.emit(this.itemCount);
+        this.artPiece.inCart = false;
+      }
+    });
+    //
+
+
+    /*const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        title: 'Remove Item',
+        message: 'Are you sure you want to remove this item from your cart?'
+      }
+    });
+    confirmDialog.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.cartService.removeFromCart(this.artPiece);
+        this.itemCount= this.cartService.getCount();
+        this.cartCount.emit(this.itemCount);
+        this.artPiece.inCart = false;
+      }
+    });*/
+
+    /*let r = confirm("Are you sure you want to remove this item?");
+    if (r == true) {
+      this.cartService.removeFromCart(this.artPiece);
+      this.itemCount= this.cartService.getCount();
+      this.cartCount.emit(this.itemCount);
+      this.artPiece.inCart = false;
+    }*/
   }
 
   closeAddedToCartModal() {
     this.modalService.dismissAll();
   }
-
-  modalOptions = {
-    size: 'lg',
-    centered: true,
-    scrollable: true
-  };
 
   showDetails(artPiece) {
     const modalRef = this.modalService.open(DetailsModalComponent, this.modalOptions)

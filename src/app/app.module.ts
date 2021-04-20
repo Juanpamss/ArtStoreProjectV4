@@ -25,7 +25,9 @@ import { FavouriteComponent } from './favourite/favourite.component';
 import { LoginComponent } from './login/login.component';
 import { AddedToCartModalComponent } from './added-to-cart-modal/added-to-cart-modal.component';
 import { DetailsModalComponent } from './details-modal/details-modal.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { DetailsModalComponent } from './details-modal/details-modal.component';
     FavouriteComponent,
     LoginComponent,
     AddedToCartModalComponent,
-    DetailsModalComponent
+    DetailsModalComponent,
+    ConfirmDialogComponent
 
   ],
   imports: [
@@ -50,7 +53,9 @@ import { DetailsModalComponent } from './details-modal/details-modal.component';
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot({ count: counterReducer }),
-    NgxImageZoomModule
+    NgxImageZoomModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [artapiService, ProductsService],
   bootstrap: [AppComponent],
