@@ -34,7 +34,8 @@ export class DetailsModalComponent implements OnInit {
     this.inCart = true;
     this.cartService.addToCart(this.artPiece);
     this.itemCount= this.cartService.getCount();
-    this.cartCount.emit(this.itemCount);
+    this.cartService.updateItemsCount(this.itemCount)
+    //this.cartCount.emit(this.itemCount);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
       })

@@ -3,8 +3,8 @@ import { artapiService } from '../services/artapi.service';
 import { Router } from '@angular/router';
 import { SearchResultsModel } from '../models/SearchResults.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
 import { LoginService } from '../login.service';
+import {CartService} from "../services/cart.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,7 @@ import { LoginService } from '../login.service';
 export class NavbarComponent implements OnInit {
 
   @Input() cartCount;
-  
+
   searchInput: string;
 
   searchResults: SearchResultsModel[];
@@ -24,14 +24,17 @@ export class NavbarComponent implements OnInit {
     private _artapiService: artapiService,
     private router: Router,
     private modalService: NgbModal,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private _cartService: CartService
   ) {}
 
   closeResult: string;
   title = '';
   userName = 'Login'
+
   ngOnInit(): void {
     this.userName = this.loginService.getUsername();
+    this._cartService.currentItemsCount.subscribe(count => this.cartCount = count)
   }
 
   getFormData(formData) {

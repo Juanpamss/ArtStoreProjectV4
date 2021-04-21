@@ -4,7 +4,7 @@ import { CartService } from '../services/cart.service';
 import { FavouriteService } from '../favourite.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {DetailsModalComponent} from "../details-modal/details-modal.component";
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {MatDialog} from '@angular/material/dialog';
 import { ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
@@ -28,17 +28,11 @@ export class ProductCardComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private favouriteService: FavouriteService,
-    private modalService: NgbModal,
-    private dialog: MatDialog
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
-    //this.isArtInCart()
   }
-
-  /*isArtInCart() {
-    this.inCart = false;
-  }*/
 
   addToFavorites() {
     this.artPiece.toggle = !this.artPiece.toggle;
@@ -53,11 +47,12 @@ export class ProductCardComponent implements OnInit {
     this.artPiece.inCart = true;
     this.cartService.addToCart(this.artPiece);
     this.itemCount= this.cartService.getCount();
-    this.cartCount.emit(this.itemCount);
+    this.cartService.updateItemsCount(this.itemCount)
+    //this.cartCount.emit(this.itemCount);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
   }
 
-  removeFromCart(artPiece) {
+  removeFromCart() {
 
     //
 
@@ -68,7 +63,8 @@ export class ProductCardComponent implements OnInit {
       if (result) {
         this.cartService.removeFromCart(this.artPiece);
         this.itemCount= this.cartService.getCount();
-        this.cartCount.emit(this.itemCount);
+        this.cartService.updateItemsCount(this.itemCount)
+        //this.cartCount.emit(this.itemCount);
         this.artPiece.inCart = false;
       }
     });

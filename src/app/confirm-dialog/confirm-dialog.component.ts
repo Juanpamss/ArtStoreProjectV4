@@ -16,7 +16,6 @@ export class ConfirmDialogComponent implements OnInit {
   }
 
   passBack(action) {
-    console.log("action: ", action)
     this.activeModal.close(action);
   }
 

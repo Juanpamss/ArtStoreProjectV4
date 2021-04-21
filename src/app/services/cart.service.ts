@@ -1,12 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ArtPiece } from '../models/artPiece.model';
+import {BehaviorSubject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
+  private itemsCount = new BehaviorSubject<Number>(0)
+
+  currentItemsCount = this.itemsCount.asObservable()
+
   items = [];
   constructor() {}
+
+  updateItemsCount(count){
+    console.log("new count: ", count)
+    this.itemsCount.next(count)
+  }
 
   addToCart(product) {
     this.items.push(product);
