@@ -13,7 +13,6 @@ import { ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.componen
   styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent implements OnInit {
-  @Output() cartCount: EventEmitter<any> = new EventEmitter();
 
   @Input('ArtPiece') artPiece: ArtPiece;
   @Input('show-actions') showActions = true;
@@ -48,7 +47,6 @@ export class ProductCardComponent implements OnInit {
     this.cartService.addToCart(this.artPiece);
     this.itemCount= this.cartService.getCount();
     this.cartService.updateItemsCount(this.itemCount)
-    //this.cartCount.emit(this.itemCount);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result
   }
 
@@ -64,7 +62,6 @@ export class ProductCardComponent implements OnInit {
         this.cartService.removeFromCart(this.artPiece);
         this.itemCount= this.cartService.getCount();
         this.cartService.updateItemsCount(this.itemCount)
-        //this.cartCount.emit(this.itemCount);
         this.artPiece.inCart = false;
       }
     });
@@ -104,7 +101,7 @@ export class ProductCardComponent implements OnInit {
     modalRef.componentInstance.artPiece = artPiece
     modalRef.componentInstance.cartCount.subscribe((cartCountFromDetailsModal) => {
       this.itemCount = cartCountFromDetailsModal;
-      this.cartCount.emit(this.itemCount);
+      this.cartService.updateItemsCount(this.itemCount);
       })
   }
 }

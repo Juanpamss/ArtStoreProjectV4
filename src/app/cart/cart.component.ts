@@ -14,8 +14,6 @@ export class CartComponent implements OnInit {
 
   @Output() buttonClicked: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Output() cartCount: EventEmitter<any> = new EventEmitter();
-
   items = this._cartService.getItems();
 
   totalPrice: number = 0;
@@ -73,8 +71,6 @@ export class CartComponent implements OnInit {
       if (result) {
         this._cartService.removeFromCart(item);
         this.itemCount= this._cartService.getCount();
-        console.log("count: ", this.itemCount)
-        this.cartCount.emit(this.itemCount);
         this._cartService.updateItemsCount(this.itemCount)
         this.removeLocally(item);
         this.totalPrice = this.reCalculateTotal();

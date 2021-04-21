@@ -13,12 +13,11 @@ import {CartService} from "../services/cart.service";
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() cartCount;
-
   searchInput: string;
 
   searchResults: SearchResultsModel[];
-  itemCount: Number;
+
+  cartCount: Number;
 
   constructor(
     private _artapiService: artapiService,

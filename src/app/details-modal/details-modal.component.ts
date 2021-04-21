@@ -11,7 +11,6 @@ import { CartService } from '../services/cart.service';
 export class DetailsModalComponent implements OnInit {
 
   @Input('ArtPiece') artPiece: ArtPiece;
-  @Output() cartCount: EventEmitter<any> = new EventEmitter();
 
   inCart: boolean;
   itemCount: Number;
@@ -27,15 +26,13 @@ export class DetailsModalComponent implements OnInit {
   ngOnInit(): void {
 
     this.thumbImage = this.artPiece.imgURL !== undefined ? this.artPiece.imgURL.replace("/843,","/400,") : undefined
-
   }
 
   addToCart(content) {
-    this.inCart = true;
+    this.artPiece.inCart = true;
     this.cartService.addToCart(this.artPiece);
     this.itemCount= this.cartService.getCount();
     this.cartService.updateItemsCount(this.itemCount)
-    //this.cartCount.emit(this.itemCount);
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
       })
@@ -44,5 +41,4 @@ export class DetailsModalComponent implements OnInit {
   dismissAllModals() {
     this.modalService.dismissAll();
   }
-
 }
