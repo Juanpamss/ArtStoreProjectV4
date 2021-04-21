@@ -44,10 +44,14 @@
           <label style="font-weight: bold">Price: &nbsp;</label>
           <label>{{ artPiece.price | currency: "USD":"symbol" }}</label>
         </div>
-        <a
-          (click)="addToCart(addedToCartModal)"
-          class="btn btn-secondary"
-          style="color: white; margin: 10px; display: flex; justify-content: center;">Add To Cart</a>
+
+        <a *ngIf="!artPiece.inCart" (click)="addToCart(addedToCartModal)"
+           class="btn btn-secondary" style="color: white; margin-right: 10px; margin-left: 10px; display: flex; justify-content: center">{{addOrRemove? 'Remove From' : 'Add To'}} Cart</a>
+        <a *ngIf="artPiece.inCart"
+           (click)="removeFromCart()"
+           class="btn btn-secondary"
+           style="color: black; margin-right: 10px; margin-left: 10px; background: lightgray; border-color: lightgray; display: flex; justify-content: center">Remove from Cart</a>
+
         <ng-template #addedToCartModal let-modal class="added-to-cart">
           <app-added-to-cart-modal (buttonClicked)="dismissAllModals($event)"></app-added-to-cart-modal>
         </ng-template>

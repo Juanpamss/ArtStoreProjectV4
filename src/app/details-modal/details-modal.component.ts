@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {ArtPiece} from "../models/artPiece.model";
 import { CartService } from '../services/cart.service';
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-details-modal',
@@ -36,6 +37,20 @@ export class DetailsModalComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' })
       .result.then((result) => {
       })
+  }
+
+  removeFromCart() {
+    const modalRef = this.modalService.open(ConfirmDialogComponent)
+    modalRef.componentInstance.title = 'Remove Item'
+    modalRef.componentInstance.message = 'Are you sure you want to remove this item from your cart?'
+    modalRef.result.then((result) => {
+      if (result) {
+        this.cartService.removeFromCart(this.artPiece);
+        this.itemCount= this.cartService.getCount();
+        this.cartService.updateItemsCount(this.itemCount)
+        this.artPiece.inCart = false;
+      }
+    });
   }
 
   dismissAllModals() {

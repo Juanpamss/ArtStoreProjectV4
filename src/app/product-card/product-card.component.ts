@@ -51,9 +51,6 @@ export class ProductCardComponent implements OnInit {
   }
 
   removeFromCart() {
-
-    //
-
     const modalRef = this.modalService.open(ConfirmDialogComponent)
     modalRef.componentInstance.title = 'Remove Item'
     modalRef.componentInstance.message = 'Are you sure you want to remove this item from your cart?'
@@ -65,31 +62,6 @@ export class ProductCardComponent implements OnInit {
         this.artPiece.inCart = false;
       }
     });
-    //
-
-
-    /*const confirmDialog = this.dialog.open(ConfirmDialogComponent, {
-      data: {
-        title: 'Remove Item',
-        message: 'Are you sure you want to remove this item from your cart?'
-      }
-    });
-    confirmDialog.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.cartService.removeFromCart(this.artPiece);
-        this.itemCount= this.cartService.getCount();
-        this.cartCount.emit(this.itemCount);
-        this.artPiece.inCart = false;
-      }
-    });*/
-
-    /*let r = confirm("Are you sure you want to remove this item?");
-    if (r == true) {
-      this.cartService.removeFromCart(this.artPiece);
-      this.itemCount= this.cartService.getCount();
-      this.cartCount.emit(this.itemCount);
-      this.artPiece.inCart = false;
-    }*/
   }
 
   closeAddedToCartModal() {
